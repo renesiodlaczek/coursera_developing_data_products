@@ -4,9 +4,7 @@ format: html
 editor: visual
 ---
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Published at 2024-08-18
 
 ```{r}
 library(leaflet)
