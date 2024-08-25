@@ -13,3 +13,41 @@ leaflet() |>
   addTiles() |> 
   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
 ```
+
+```{r}
+library(leaflet)
+
+set.seed(2016-04-25)
+df <- data.frame(lat = runif(32, min = 39.25, max = 39.35),
+                 lng = runif(32, min = -76.65, max = -76.55))
+
+car_names <- row.names(mtcars)
+
+df |> 
+    leaflet() |> 
+    addTiles() |> 
+    addCircleMarkers(popup = car_names)
+
+# Cluster points together when zoomed out
+#addMarkers(clusterOptions = markerClusterOptions())
+    
+
+ 
+```
+
+```{r}
+data <- cbind(mtcars, df)
+
+data |> 
+    leaflet() |> 
+    addTiles() |> 
+    addCircles(weight = 5, radius = sqrt(data$mpg) * 100)
+```
+
+```{r}
+data |> 
+    leaflet() |> 
+    addTiles() |> 
+    addCircleMarkers(color = data$cyl) |> # needs to include the color names
+    addLegend(labels = c("4", "6", "8"), colors = c("blue", "red", "green"))
+```

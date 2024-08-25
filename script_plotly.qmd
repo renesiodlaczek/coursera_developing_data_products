@@ -1,0 +1,67 @@
+---
+title: "script_plotly"
+format: html
+editor: visual
+---
+
+```{r}
+Sys.setenv(HOME="C:/Users/renes/Documents")
+```
+
+## 2D Scatterplot
+
+```{r}
+library(plotly)
+
+data("mtcars")
+mtcars$cyl <- as.factor(mtcars$cyl)
+plot_ly(mtcars, x = ~wt, y = ~mpg, mode = "markers", 
+        color = ~cyl, size = ~hp)
+```
+
+## 3D Scatterplot
+
+```{r}
+set.seed(123)
+temp <- rnorm(100, 30, 5)
+pressure <- rnorm(100)
+dtime <- 1:100
+plot_ly(x = ~temp, y = ~pressure, z = ~dtime,
+        type = "scatter3d", mode = "markers", color = 
+            ~temp)
+
+```
+
+## Time Series 1
+
+```{r}
+data("airmiles")
+#time(airmiles)
+
+plot_ly(x = ~time(airmiles), y = airmiles, mode = "lines")
+```
+
+## Time Series 2
+
+```{r}
+library(tidyverse)
+data("EuStockMarkets")
+
+stocks <- as_tibble(EuStockMarkets) |> 
+    mutate(time = time(EuStockMarkets)) |> 
+    pivot_longer(cols = 1:4, names_to = "index", values_to = "price")  
+
+plot_ly(stocks, x = ~time, y = ~price, color = ~index, mode = "lines") |> 
+    layout(title = "Selected stock market indices")
+```
+
+## 3D Surface
+
+```{r}
+terrain <- matrix(sort(rnorm(100*100)), nrow = 100, ncol = 100)
+
+plot_ly(z = terrain, type = "surface")
+
+# Heatmap
+# plot_ly(z = terrain, type = "heatmap")
+```
