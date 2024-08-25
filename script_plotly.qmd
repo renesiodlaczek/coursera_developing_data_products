@@ -55,13 +55,11 @@ plot_ly(stocks, x = ~time, y = ~price, color = ~index, mode = "lines") |>
     layout(title = "Selected stock market indices")
 ```
 
-## 3D Surface
+## Heatmap/3D Surface
 
 ```{r}
 terrain <- matrix(sort(rnorm(100*100)), nrow = 100, ncol = 100)
 
+plot_ly(z = terrain, type = "heatmap")
 plot_ly(z = terrain, type = "surface")
-
-# Heatmap
-# plot_ly(z = terrain, type = "heatmap")
 ```
