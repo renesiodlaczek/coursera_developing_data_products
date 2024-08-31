@@ -5,7 +5,7 @@ editor: visual
 ---
 
 ```{r}
-Sys.setenv(HOME="C:/Users/renes/Documents")
+#Sys.setenv(HOME="C:/Users/renes/Documents")
 ```
 
 ## 2D Scatterplot
